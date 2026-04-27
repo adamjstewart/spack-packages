@@ -24,4 +24,6 @@ class PyBqplot(PythonPackage):
         depends_on("py-traitlets@4.3:")
         depends_on("py-traittypes@0.0.6:")
         depends_on("py-numpy@1.10.4:")
-        depends_on("py-pandas@1:2")
+        # https://github.com/bqplot/bqplot/pull/1698
+        depends_on("py-pandas@1:", when="@0.12.46:")
+        depends_on("py-pandas@1:2", when="@:0.12.45")
