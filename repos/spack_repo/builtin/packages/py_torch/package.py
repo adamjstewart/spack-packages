@@ -103,8 +103,7 @@ class PyTorch(PythonPackage, CudaPackage, ROCmPackage):
 
     conflicts("+cuda+rocm")
     conflicts("+gloo+rocm")
-    conflicts("+rocm", when="@2.12", msg="Rocm doesn't support py-torch 2.12 release")
-    conflicts("+rocm", when="@2.13", msg="Rocm doesn't support py-torch 2.13 release")
+    conflicts("+rocm", when="@2.12:", msg="Rocm doesn't support py-torch 2.12+ releases")
     conflicts("+tensorpipe", when="+rocm ^hip@:5.1", msg="TensorPipe not supported until ROCm 5.2")
 
     # https://github.com/pytorch/pytorch/issues/77811
