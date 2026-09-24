@@ -132,7 +132,8 @@ class PyJaxlib(PythonPackage, CudaPackage, ROCmPackage):
         depends_on("hsakmt-roct", when="^hip@:6.2")
         depends_on("llvm-amdgpu")
         depends_on("rocprofiler-sdk", when="@0.8.1:")
-        depends_on("rocm-smi-lib", when="@0.11:")
+        depends_on("rocm-smi-lib", when="@0.11:0.11.1")
+        depends_on("amdsmi", when="@0.11.2:")
         depends_on("py-nanobind")
 
     with default_args(type="build"):
@@ -304,6 +305,7 @@ class PyJaxlib(PythonPackage, CudaPackage, ROCmPackage):
                 "hsakmt-roct",
                 "rocprofiler-sdk",
                 "rocm-smi-lib",
+                "amdsmi",
             ]
             for pkg_dep in transitive_rocm_dependencies:
                 if self.spec.satisfies(f"^{pkg_dep}"):
@@ -379,6 +381,10 @@ class PyJaxlib(PythonPackage, CudaPackage, ROCmPackage):
                 args.append(f"--rocm_path={self.spec['hip'].prefix}")
             if spec.satisfies("@:0.4.35"):
                 args.append("--enable_rocm")
+            if spec.satisfies("@0.11.2:"):
+                args.append(
+                    "--bazel_options=--extra_toolchains=@local_config_rocm//crosstool:toolchain-linux-x86_64"
+                )
             if spec.satisfies("@0.11:"):
                 args.extend(
                     [
