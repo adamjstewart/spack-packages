@@ -203,7 +203,9 @@ class PyMatplotlib(PythonPackage):
         depends_on("tk@8.5:", when="@3.8: backend=" + backend, type="run")
         depends_on("tk@8.4:", when="@3.5: backend=" + backend, type="run")
         depends_on("tk@8.3:", when="backend=" + backend, type="run")
-        depends_on("cpython+tkinter", when=f"backend={backend} ^[virtuals=python] cpython", type="run")
+        depends_on(
+            "cpython+tkinter", when=f"backend={backend} ^[virtuals=python] cpython", type="run"
+        )
         depends_on("pypy+tkinter", when=f"backend={backend} ^[virtuals=python] pypy", type="run")
     # Qt
     # matplotlib/backends/qt_compat.py

@@ -225,7 +225,9 @@ class Lbann(CachedCMakePackage, CudaPackage, ROCmPackage):
 
     # Core library support for Python Data Reader and extensible interface
     depends_on("python@3:", type=("run"), when="@:0.90,0.99: +python")
-    depends_on("cpython@3:+shared", type=("run"), when="@:0.90,0.99: +python ^[virtuals=python] cpython")
+    depends_on(
+        "cpython@3:+shared", type=("run"), when="@:0.90,0.99: +python ^[virtuals=python] cpython"
+    )
     extends("python", when="+python")
 
     # Python front end and possible extra packages

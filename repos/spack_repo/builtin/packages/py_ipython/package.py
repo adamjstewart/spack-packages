@@ -59,7 +59,9 @@ class PyIpython(PythonPackage):
     depends_on("python@3.10:", when="@8.19:", type=("build", "run"))
     depends_on("python@3.9:", when="@8.13.1:", type=("build", "run"))
     depends_on("python@3.8:", when="@8:", type=("build", "run"))
-    depends_on("cpython@3.8:+sqlite3", when="@8: ^[virtuals=python] cpython", type=("build", "run"))
+    depends_on(
+        "cpython@3.8:+sqlite3", when="@8: ^[virtuals=python] cpython", type=("build", "run")
+    )
     depends_on("pypy@3.8:+sqlite3", when="@8: ^[virtuals=python] pypy", type=("build", "run"))
 
     with default_args(type="build"):
