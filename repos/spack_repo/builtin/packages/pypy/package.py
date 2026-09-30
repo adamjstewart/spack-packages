@@ -11,7 +11,7 @@ class Pypy(Package):
     """A fast, compliant alternative implementation of Python."""
 
     homepage = "https://www.pypy.org/"
-    url = "https://downloads.python.org/pypy/pypy3.10-v7.3.12-src.tar.bz2"
+    url = "https://downloads.python.org/pypy/pypy3.12-v8.0.0-src.tar.gz"
     hg = "https://foss.heptapod.net/pypy/pypy"
 
     maintainers("adamjstewart")
@@ -25,7 +25,9 @@ class Pypy(Package):
         "3.11-v8.0.0", sha256="829cef413d84383563488f0234b3cc537a8034e43fda13e0530500dad2d5dc3b"
     )
     version(
-        "3.10-v7.3.12", sha256="86e4e4eacc36046c6182f43018796537fe33a60e1d2a2cc6b8e7f91a5dcb3e42"
+        "3.10-v7.3.12",
+        sha256="86e4e4eacc36046c6182f43018796537fe33a60e1d2a2cc6b8e7f91a5dcb3e42",
+        url="https://downloads.python.org/pypy/pypy3.10-v7.3.12-src.tar.bz2",
     )
 
     for ver in ["3.12", "3.11", "3.10"]:
