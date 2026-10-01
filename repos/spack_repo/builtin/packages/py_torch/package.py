@@ -263,6 +263,16 @@ class PyTorch(PythonPackage, CudaPackage, ROCmPackage):
         depends_on("py-psutil")
 
     conflicts("%gcc@:9.3", msg="C++17 support required")
+    conflicts(
+        "%gcc@:12",
+        when="@2.14: +nnpack target=x86_64_v4:",
+        msg="py-torch@2.14+nnpack on x86_64_v4 requires GCC 13+ for AVX-512 BF16/NE-CONVERT",
+    )
+    conflicts(
+        "%clang@:15",
+        when="@2.14: +nnpack target=x86_64_v4:",
+        msg="py-torch@2.14+nnpack on x86_64_v4 requires Clang 16+ for AVX-512 BF16/NE-CONVERT",
+    )
 
     # https://github.com/pytorch/pytorch/issues/172630 (GCC-14.2 ICE for aarch64)
     patch(
@@ -308,6 +318,12 @@ class PyTorch(PythonPackage, CudaPackage, ROCmPackage):
                 "cmake/public/LoadHIP.cmake",
                 string=True,
             )
+
+    def flag_handler(self, name, flags):
+        # Enable ISA extensions required by PyTorch 2.14 FBGEMM/QuantUtilsAvx512
+        if name == "cxxflags" and self.spec.satisfies("@2.14: +nnpack target=x86_64_v4:"):
+            flags.append("-mavx512bf16 -mavxneconvert -mavx512vl")
+        return super().flag_handler(name, flags)
 
     def torch_cuda_arch_list(self, env):
         if "+cuda" in self.spec:
