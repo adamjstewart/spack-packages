@@ -25,9 +25,7 @@ class Pypy(Package):
         "3.11-v8.0.0", sha256="829cef413d84383563488f0234b3cc537a8034e43fda13e0530500dad2d5dc3b"
     )
     version(
-        "3.10-v7.3.12",
-        sha256="86e4e4eacc36046c6182f43018796537fe33a60e1d2a2cc6b8e7f91a5dcb3e42",
-        url="https://downloads.python.org/pypy/pypy3.10-v7.3.12-src.tar.bz2",
+        "3.10-v7.3.12", sha256="86e4e4eacc36046c6182f43018796537fe33a60e1d2a2cc6b8e7f91a5dcb3e42"
     )
 
     for ver in ["3.12", "3.11", "3.10"]:
@@ -188,3 +186,10 @@ class Pypy(Package):
             install_tree("bin", prefix.bin)
             install_tree("include", prefix.include)
             install_tree("lib", prefix.lib)
+
+    def url_for_version(self, version):
+        if version[3] >= 8:
+            ext = "tar.gz"
+        else:
+            ext = "tar.bz2"
+        return f"https://downloads.python.org/pypy/pypy{version}-src.{ext}"
