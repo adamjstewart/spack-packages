@@ -20,6 +20,7 @@ class PyTorchvision(PythonPackage):
     license("BSD-3-Clause")
 
     version("main", branch="main")
+    version("0.29.1", sha256="0a14655bd32095148d93fa595f93aba45dda0d13b25cc7fe86a041340e4a4862")
     version("0.29.0", sha256="24be57d922927d8a2ac2e8f076f07c3447ddf8f1d25ddbb7b65578f36c9ab8e3")
     version("0.28.0", sha256="ecc4451241c8eeadc0c88213bd65c7932c9622d1d0034254b938f25362283ee9")
     version("0.27.1", sha256="705d5ab7d01af9ece3bfbb1486eed3c23a2f68414fcc9c9a88910fb3c018c3db")
