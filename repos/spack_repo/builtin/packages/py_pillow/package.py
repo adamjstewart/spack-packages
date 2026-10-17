@@ -162,7 +162,9 @@ class PyPillow(PyPillowBase):
     version("13.0.0", sha256="cdcd1ba258178f7356d74170c9a81ba4eab6a5d55748bc402a5a2a6fe6be3510")
     with default_args(deprecated=True):
         # https://pillow.readthedocs.io/en/stable/releasenotes/13.0.0.html#security
-        version("12.3.0", sha256="3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce")
+        version(
+            "12.3.0", sha256="3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce"
+        )
         # https://www.cve.org/CVERecord?id=CVE-2026-55798
         # https://www.cve.org/CVERecord?id=CVE-2026-54059
         # https://www.cve.org/CVERecord?id=CVE-2026-54060
