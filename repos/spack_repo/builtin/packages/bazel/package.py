@@ -235,6 +235,10 @@ class Bazel(Package):
             args.append(f"--macos_minimum_os={macos}")
             args.append(f"--host_macos_minimum_os={macos}")
 
+        # Bazel 9 overrides PATH to sandbox the build, but then can't find Spack-installed zip
+        if self.spec.satisfies("@9:"):
+            args.extend(["--action_env=PATH", "--host_action_env=PATH"])
+
         resource_stages = self.stage[1:]
         for _resource in resource_stages:
             try:
