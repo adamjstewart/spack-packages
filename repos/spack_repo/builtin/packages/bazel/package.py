@@ -74,6 +74,7 @@ class Bazel(Package):
     # https://github.com/bazelbuild/bazel/blob/master/docs/install/compile-source.mdx
     depends_on("bash", type="build")
     depends_on("zip", when="platform=linux", type=("build", "run"))
+    depends_on("unzip", when="platform=linux", type=("build", "run"))
     depends_on("c", type="build")
     depends_on("cxx", type="build")
     depends_on("java@25", when="@10:", type=("build", "run"))
